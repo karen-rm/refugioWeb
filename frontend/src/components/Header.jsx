@@ -1,19 +1,14 @@
-import { Facebook, Instagram, Link as LinkIcon } from 'lucide-react';
 
 export default function Header() {
     return (
         <header className="relative z-10 flex justify-between items-center px-6 py-8 md:px-16">
             <div className="flex gap-4 items-center">
                 <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                    <Instagram className="w-5 h-5" />
+                    
                 </a>
 
                 <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                    <Facebook className="w-5 h-5" />
-                </a>
-
-                <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                    <LinkIcon className="w-5 h-5" />
+                    
                 </a>
             </div>
 
