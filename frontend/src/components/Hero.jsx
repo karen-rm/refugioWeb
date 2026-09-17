@@ -5,6 +5,11 @@ import LoginModal from './LoginModal';
 export default function Hero() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
 
+    const usuarioGuardado = localStorage.getItem('usuario');
+    const usuario = usuarioGuardado
+        ? JSON.parse(usuarioGuardado)
+        : null;
+
     return (
         <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-between">
 
@@ -38,15 +43,14 @@ export default function Hero() {
                     Sin señal, sin ruido. Solo tú y el bosque.
                 </p>
 
-                <button
-                    onClick={() => {
-                        console.log('CLICK LOGIN');
-                        setIsLoginOpen(true);
-                    }}
-                    className="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105"
-                >
-                    Iniciar sesión
-                </button>
+                {!usuario && (
+                    <button
+                        onClick={() => setIsLoginOpen(true)}
+                        className="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105"
+                    >
+                        Iniciar sesión
+                    </button>
+                )}
 
             </div>
 

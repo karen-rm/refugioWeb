@@ -42,3 +42,59 @@ export async function obtenerCabanas() {
 
     return data.cabanas;
 }
+
+export async function registrarCabana(cabana) {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${API_URL}/api/cabana`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(cabana),
+    });
+
+    if (!response.ok) {
+        throw new Error('No se pudo registrar la cabaña');
+    }
+
+    return await response.json();
+}
+
+
+export async function editarCabana(idCabana, cabana) {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${API_URL}/api/cabana/${idCabana}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(cabana),
+    });
+
+    if (!response.ok) {
+        throw new Error('No se pudo editar la cabaña');
+    }
+
+    return await response.json();
+}
+
+export async function eliminarCabana(idCabana) {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${API_URL}/api/cabana/${idCabana}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('No se pudo eliminar la cabaña');
+    }
+
+    return await response.json();
+}
