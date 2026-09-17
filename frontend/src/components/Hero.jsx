@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import Header from './Header';
+import LoginModal from './LoginModal';
 
 export default function Hero() {
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+
     return (
         <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-between">
 
@@ -34,11 +38,23 @@ export default function Hero() {
                     Sin señal, sin ruido. Solo tú y el bosque.
                 </p>
 
-                <button className="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105">
+                <button
+                    onClick={() => {
+                        console.log('CLICK LOGIN');
+                        setIsLoginOpen(true);
+                    }}
+                    className="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105"
+                >
                     Iniciar sesión
                 </button>
 
             </div>
+
+            <LoginModal
+                isOpen={isLoginOpen}
+                onClose={() => setIsLoginOpen(false)}
+            />
+
         </section>
     );
 }
